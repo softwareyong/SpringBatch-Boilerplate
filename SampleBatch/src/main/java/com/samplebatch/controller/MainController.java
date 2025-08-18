@@ -23,6 +23,8 @@ public class MainController {
      * 일단 다음에 도전
      * .addString("date", value) 이렇게 파라미터를 받는 이유는 특정 일자에 실행을 하는데
      * 겹치는 일자가 있다면 중복 실행 방지를 해줌
+     * 실행예시: localhost:8080/first?value=a
+     * 한 번더 똑같이 하면 -> value라서 예외가 터짐
      */
     @GetMapping("/first")
     public String firstApi(@RequestParam("value") String value) throws Exception {
@@ -32,7 +34,6 @@ public class MainController {
                 .toJobParameters();
 
         jobLauncher.run(jobRegistry.getJob("firstJob"), jobParameters);
-
 
         return "ok";
     }
