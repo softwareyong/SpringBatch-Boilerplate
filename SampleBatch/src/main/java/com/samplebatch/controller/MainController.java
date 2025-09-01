@@ -51,5 +51,17 @@ public class MainController {
         return "ok";
     }
 
+    @GetMapping("/third")
+    public String thirdApi(@RequestParam("value") String value) throws Exception {
+
+        JobParameters jobParameters = new JobParametersBuilder()
+                .addString("date", value)
+                .toJobParameters();
+
+        jobLauncher.run(jobRegistry.getJob("thirdJob"), jobParameters);
+
+        return "ok";
+    }
+
 }
 
